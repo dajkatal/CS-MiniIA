@@ -1,0 +1,60 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Portal</title>
+
+    <style>
+        .item0 {grid-area: error; text-align: center;}
+        .item1 { grid-area: csv; text-align: center;}
+        .item2 { grid-area: or; text-align: center;}
+        .item3 { grid-area: form; text-align: center;}
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'error error error error error error'
+                'csv csv or form form form'
+                'csv csv or form form form'
+                'csv csv or form form form';
+            grid-gap: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container">
+    {% if messages %}
+        <div class="item0">
+            {% for message in messages %}
+                <div>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        </div>
+{% endif %}
+    <div class="item1">
+        <h2>Please upload the a csv file</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Upload a file</label>
+            <input type="file" name="file">
+            <p>Only accepts CSV files</p>
+            <button type="submit" name="file_submission">Upload</button>
+        </form>
+    </div>
+    <div class="item2">
+        <h2>OR</h2>
+    </div>
+    <div class="item3">
+        <h2>Fill this form</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" name="form_submission" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

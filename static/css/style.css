@@ -1,0 +1,65 @@
+a {
+    text-decoration: none !important;
+    color: black;
+}
+
+button {
+    all: unset;
+}
+form {
+    all: unset;
+}
+
+.header { grid-area: header; }
+.classoverview { grid-area: classoverview; }
+.classes { grid-area: classes; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'classoverview classoverview classoverview classoverview classoverview classoverview'
+        'classes classes classes classes classes classes';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 30px;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.data {
+    width: auto;
+    margin: 10px ;
+}
+
+.class_button {
+    background-color: rgba(158, 236, 255, 0.8);
+    width: 150px;
+    padding: 20px 20px;
+    margin: 10px 0;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    margin: 0px auto;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #9EECFF;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #9EECFF;
+}

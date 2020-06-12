@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Portal</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+</head>
+<body>
+<div class="grid-container">
+    <div class="header">
+        {% if messages %}
+            {% for message in messages %}
+                <div>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h1>All Classrooms</h1>
+    </div>
+    <div class="classoverview" id="container">
+        {% for key, value in overview.items %}
+            <div class="data">
+                <strong>{{ key }}:</strong> {{ value }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="classes">
+        <form method="post">
+        {% csrf_token %}
+            {%  for set_of_classes in num_classes %}
+                <div id="container">
+                    {% for class_index in set_of_classes %}
+                        <button class="class_button" type="submit" name="{{ class_index }}">Class {{ class_index }}</button>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </form>
+    </div>
+<div style="width: 500px; text-align: left"><strong>Students with no friends:</strong></div>
+</div>
+<div>
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Gender</th>
+                <th>Islamic</th>
+                <th>Behavioral</th>
+            </tr>
+
+            {% for student in no_friends %}
+                <tr>
+                {% for value in student %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+</html>
